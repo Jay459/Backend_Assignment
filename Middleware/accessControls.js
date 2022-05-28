@@ -7,6 +7,7 @@ exports.roles = (function () {
 
     ac.grant("admin")
         .extend("client")
+        .readAny("profile")
         .updateAny("profile")
         .deleteAny("profile")
 
