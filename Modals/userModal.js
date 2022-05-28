@@ -26,7 +26,13 @@ const userSchema = new mongoose.Schema({
         required: true,
         default: 'client',
         enum: ['admin', 'client']
-    }
+    },
+    bills: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'billsSchema'
+        }
+    ]
 })
 
 userSchema.pre('save', async function (req, res, next) {

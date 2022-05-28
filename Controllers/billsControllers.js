@@ -1,7 +1,7 @@
 const BillsSchema = require('../Modals/billsModal');
 
 exports.createBill = async (req, res) => {
-    const bill = new BillsSchema(req.body)
+    const bill = new BillsSchema({ ...req.body, user: req.profile })
     try {
         await bill.save();
         res.send({ status: 200, bill })
@@ -29,6 +29,17 @@ exports.editBill = async (req, res) => {
 exports.getBills = async (req, res) => {
     try {
         const bills = await BillsSchema.find({});
+        res.status(200).json({
+            bills: bills
+        })
+    } catch (error) {
+        res.status(401).send({ error: error.message })
+    }
+}
+
+exports.getSpecificUserBills = async (req, res) => {
+    try {
+        const bills = await BillsSchema.find({ user: req.profile._id });
         res.status(200).json({
             bills: bills
         })

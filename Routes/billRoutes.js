@@ -10,4 +10,6 @@ router.post('/bill/update', auth, billControllers.editBill)
 
 router.get('/bill/get', billControllers.getBills)
 
+router.get('/bill/get-specific-bills', auth, billControllers.getSpecificUserBills)
+
 module.exports = router

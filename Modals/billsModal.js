@@ -15,6 +15,10 @@ const billsSchema = new mongoose.Schema({
     },
     receivable: {
         type: Number
+    },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'userSchema'
     }
 })
 
